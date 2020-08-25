@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Jira - How much time did I waste (spend) on that"
+date:   2020-08-24 06:00:00 -0800
+categories: jekyll update
+---
+We track our time spent working issues in Jira, but its difficult to pull "time spent" data back out - outside of the built-in reports and tools.
+
+You could dump your Jira queries to Excel and work with the data there, but if
+1. You just want to total the time spent,
+2. On a list of issues returned by a query
+
+If you have ScriptRunner installed in your Jira instance, there is an easier way....
+
+Let's say you want to know all the time spent on your assigned issues for a project.  A simple query shows all of the tickets in the Epic that were assigned to me.
+
+![Jira query](/assets/20200825-jira-query.PNG)
+
+Using the issueFunction "aggregateExpression" you can quickly grab the total time spent on issues in that query.
+
+{% highlight sql %}
+"Epic Link" = MYPROJ-5021 AND assignee = currentUser() AND  issueFunction in aggregateExpression("Total tracked", "timespent.sum()")
+{% endhighlight %}
+
+Which returns the sum of timespent at the top of the search results
+
+![Jira query](/assets/20200825-jira-query-with-time.PNG)
+
