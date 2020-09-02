@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Jira Links"
+title:  "InSpec Links"
 date:   2020-08-24 06:00:00 -0800
-categories: jekyll update links jira
+categories: jekyll update links inspec
 ---
 Searching / Queries
 
